@@ -62,3 +62,5 @@ if let businessAccount: BusinessAccount = customer1.getAccount(12347) as? Busine
     customer1.listAllAccounts()
     AccountService.shared.getTotalBalance()
 }
+
+
