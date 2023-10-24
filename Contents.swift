@@ -16,7 +16,10 @@ let checkingAccount2 = CheckingAccount(accountNumber: 22345, initialBalance: 100
 
 // add to
 customer1.addAccount(account: checkingAccount)
-customer1.addAccount(account: savingAccount)
+// unwrap optional
+if let savingAccount {
+    customer1.addAccount(account: savingAccount)
+}
 customer1.addAccount(account: businessAccount)
 
 customer2.addAccount(account: checkingAccount2)
@@ -62,5 +65,4 @@ if let businessAccount: BusinessAccount = customer1.getAccount(12347) as? Busine
     customer1.listAllAccounts()
     AccountService.shared.getTotalBalance()
 }
-
 

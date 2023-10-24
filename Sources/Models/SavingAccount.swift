@@ -4,12 +4,26 @@ public class SavingAccount : Account {
     var interestRate: Float
     var minimumBalance: Double
     
-    public init(accountNumber: Int, initialBalance: Double, interestRate: Float, minimumBalance: Double) {
+    // Failable initilizer
+    public init?(accountNumber: Int, initialBalance: Double, interestRate: Float, minimumBalance: Double) {
         self.interestRate = interestRate
         self.minimumBalance = minimumBalance
+        
+        if minimumBalance > initialBalance {
+            return nil
+        }
+        
         super.init(accountNumber: accountNumber, initialBalance: initialBalance, accountType: .saving)
     }
     
+    public override func withdraw(amount: Double) -> Double {
+        if isValidTransaction(amount: amount) {
+            balance -= amount
+        }
+        return balance
+    }
+
+    // Calculate interest and add to the balance
     public func calculateInterest() -> Double {
         if self.balance > 0 {
             let interest = self.balance * Double(interestRate)
@@ -21,6 +35,7 @@ public class SavingAccount : Account {
         }
     }
     
+    // public function to check if a transaction is valid.
     public override func isValidTransaction(amount: Double) -> Bool {
         do {
             return try performIsValidTransaction(amount: amount)
@@ -30,6 +45,7 @@ public class SavingAccount : Account {
         }
     }
     
+    // private func which performs the check for valid transations.
     private func performIsValidTransaction(amount: Double) throws -> Bool {
         let balanceAfterTransaction = self.balance - amount
         

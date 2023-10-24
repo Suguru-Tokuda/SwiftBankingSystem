@@ -5,6 +5,7 @@ public class BusinessAccount : Account {
         super.init(accountNumber: accountNumber, initialBalance: initialBalance, accountType: accountType)
     }
     
+    // extra feature to give the ability to receive credit card payment for Business Account
     public func acceptCreditCardPayment(transactionContent: String, transactionAmmount: Double, creditCardType: CreditCardType) -> Double {
         do {
             return try performAcceptCreditCardPayment(transactionContent: transactionContent, transactionAmount: transactionAmmount, creditCardType: creditCardType)
@@ -15,6 +16,7 @@ public class BusinessAccount : Account {
         return self.balance
     }
     
+    // private func to implement credit card payment
     private func performAcceptCreditCardPayment(transactionContent: String, transactionAmount: Double, creditCardType: CreditCardType) throws -> Double {
         if transactionAmount > 0 {
             let transactionFee = creditCardType.getTransactionFee(amount: transactionAmount)

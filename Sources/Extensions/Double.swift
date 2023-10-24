@@ -1,5 +1,6 @@
 import Foundation
 
+// giving extra feature to Double type
 extension Double {
     /**
      Converts a number into a currency String.

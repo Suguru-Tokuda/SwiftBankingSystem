@@ -70,6 +70,7 @@ public struct CustomerModel : Customer {
         }
     }
     
+    // mutating func to add account. mutating keyword is required for struct.
     public mutating func addAccount(account: Account) -> Bool {
         var accountExists = false
         

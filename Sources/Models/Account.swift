@@ -1,6 +1,8 @@
 import Foundation
 
-public class Account : BankingAccount, ValidTransaction {
+// Super class for bank accounts
+// The parent class confirms to BankingAccount and ValidTransaction 
+public class Account : BankingAccount {
     public var accountNumber: Int
     public var balance: Double
     public var accountType: AccountType

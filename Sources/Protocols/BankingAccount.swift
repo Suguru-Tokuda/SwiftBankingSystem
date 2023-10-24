@@ -8,8 +8,9 @@ public protocol BankingAccount {
     // deposit and return the total balance
     func deposit(amount: Double) -> Double
     // withdraw and return the total balance
-    func withdraw(amount: Double) -> Double}
-
+    func withdraw(amount: Double) -> Double
+    func isValidTransaction(amount: Double) -> Bool
+}
 /*
     Implements default behaviors of functions.
  */
@@ -28,5 +29,9 @@ extension BankingAccount {
         }
         
         return balance
+    }
+    
+    func isValidTransaction(amount: Double) -> Bool {
+        return true
     }
 }
