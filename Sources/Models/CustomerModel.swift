@@ -4,7 +4,6 @@ public struct CustomerModel : Customer {
     public var firstName: String
     public var lastName: String
     public var accounts: [Account]
-    private var accountDict: [Int : Account] = [:]
     
     public init(firstName: String, lastName: String, accounts: [Account]) {
         self.firstName = firstName
