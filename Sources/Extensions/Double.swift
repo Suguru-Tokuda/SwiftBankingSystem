@@ -6,7 +6,7 @@ extension Double {
      Converts a number into a currency String.
      i.g 1000 will be "$1000.00"
      */
-    public func toCurrencyStr() -> String {
+    func toCurrencyStr() -> String {
         let numberFormatter = NumberFormatter()
         numberFormatter.numberStyle = .decimal
         numberFormatter.maximumFractionDigits = 2

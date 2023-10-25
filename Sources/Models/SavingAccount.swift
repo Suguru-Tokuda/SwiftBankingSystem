@@ -1,11 +1,11 @@
 import Foundation
 
-public class SavingAccount : Account {
+class SavingAccount : Account {
     var interestRate: Float
     var minimumBalance: Double
     
     // Failable initilizer
-    public init?(accountNumber: Int, initialBalance: Double, interestRate: Float, minimumBalance: Double) {
+    init?(accountNumber: Int, initialBalance: Double, interestRate: Float, minimumBalance: Double) {
         self.interestRate = interestRate
         self.minimumBalance = minimumBalance
         
@@ -16,7 +16,7 @@ public class SavingAccount : Account {
         super.init(accountNumber: accountNumber, initialBalance: initialBalance, accountType: .saving)
     }
     
-    public override func withdraw(amount: Double) -> Double {
+    override func withdraw(amount: Double) -> Double {
         if isValidTransaction(amount: amount) {
             balance -= amount
         }
@@ -24,7 +24,7 @@ public class SavingAccount : Account {
     }
 
     // Calculate interest and add to the balance
-    public func calculateInterest() -> Double {
+    func calculateInterest() -> Double {
         if self.balance > 0 {
             let interest = self.balance * Double(interestRate)
             print("Interest: \(interest.toCurrencyStr())")
@@ -36,7 +36,7 @@ public class SavingAccount : Account {
     }
     
     // public function to check if a transaction is valid.
-    public override func isValidTransaction(amount: Double) -> Bool {
+    override func isValidTransaction(amount: Double) -> Bool {
         do {
             return try performIsValidTransaction(amount: amount)
         } catch let error {

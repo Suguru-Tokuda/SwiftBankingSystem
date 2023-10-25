@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol Customer {
+protocol Customer {
     var firstName: String { get set }
     var lastName: String { get set }
     var accounts: [Account] { get set }

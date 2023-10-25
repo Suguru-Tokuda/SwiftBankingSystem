@@ -1,11 +1,11 @@
 import Foundation
 
-public class CheckingAccount : Account {
-    override public init(accountNumber: Int, initialBalance: Double, accountType: AccountType = .checking) {
+class CheckingAccount : Account {
+    override init(accountNumber: Int, initialBalance: Double, accountType: AccountType = .checking) {
         super.init(accountNumber: accountNumber, initialBalance: initialBalance, accountType: .checking)
     }
     
-    public override func isValidTransaction(amount: Double) -> Bool {
+    override func isValidTransaction(amount: Double) -> Bool {
         do {
             return try performIsValidTransaction(amount: amount)
         } catch let error {

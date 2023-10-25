@@ -2,18 +2,18 @@ import Foundation
 
 // Super class for bank accounts
 // The parent class confirms to BankingAccount and ValidTransaction 
-public class Account : BankingAccount {
-    public var accountNumber: Int
-    public var balance: Double
-    public var accountType: AccountType
+class Account : BankingAccount {
+    var accountNumber: Int
+    var balance: Double
+    var accountType: AccountType
     
-    public init(accountNumber: Int, initialBalance: Double, accountType: AccountType) {
+    init(accountNumber: Int, initialBalance: Double, accountType: AccountType) {
         self.accountNumber = accountNumber
         self.balance = initialBalance
         self.accountType = accountType
     }
     
-    public func deposit(amount: Double) -> Double {
+    func deposit(amount: Double) -> Double {
         do {
             return try performDeposit(amount: amount)
         } catch let err {
@@ -31,7 +31,7 @@ public class Account : BankingAccount {
         }
     }
     
-    public func withdraw(amount: Double) -> Double {
+    func withdraw(amount: Double) -> Double {
         do {
             return try performWithdraw(amount: amount)
         } catch let err {
@@ -49,7 +49,7 @@ public class Account : BankingAccount {
         }
     }
     
-    public func isValidTransaction(amount: Double) -> Bool {
+    func isValidTransaction(amount: Double) -> Bool {
         return true
     }
 }

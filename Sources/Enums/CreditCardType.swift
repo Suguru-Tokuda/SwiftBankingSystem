@@ -1,7 +1,7 @@
 import Foundation
 
 // Enum for credit card type
-public enum CreditCardType: Double {
+enum CreditCardType: Double {
     // each credit card type has initial transaction fee rate
     case visa = 0.1,
          masterCard = 0.2,

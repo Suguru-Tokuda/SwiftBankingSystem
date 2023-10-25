@@ -3,7 +3,7 @@ import Foundation
 /**
     Service class which holds static variable
  */
-public class AccountService {
+class AccountService {
     public static let shared = AccountService()
     public var accountDict: [Int : Account] = [:]
     

@@ -1,12 +1,12 @@
 import Foundation
 
-public class BusinessAccount : Account {
-    public override init(accountNumber: Int, initialBalance: Double, accountType: AccountType = .business) {
+class BusinessAccount : Account {
+    override init(accountNumber: Int, initialBalance: Double, accountType: AccountType = .business) {
         super.init(accountNumber: accountNumber, initialBalance: initialBalance, accountType: accountType)
     }
     
     // extra feature to give the ability to receive credit card payment for Business Account
-    public func acceptCreditCardPayment(transactionContent: String, transactionAmmount: Double, creditCardType: CreditCardType) -> Double {
+    func acceptCreditCardPayment(transactionContent: String, transactionAmmount: Double, creditCardType: CreditCardType) -> Double {
         do {
             return try performAcceptCreditCardPayment(transactionContent: transactionContent, transactionAmount: transactionAmmount, creditCardType: creditCardType)
         } catch let err {
@@ -35,7 +35,7 @@ public class BusinessAccount : Account {
         return self.balance
     }
     
-    public override func isValidTransaction(amount: Double) -> Bool {
+    override func isValidTransaction(amount: Double) -> Bool {
         return true
     }
 }

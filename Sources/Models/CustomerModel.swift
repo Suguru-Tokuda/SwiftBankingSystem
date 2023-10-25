@@ -1,11 +1,11 @@
 import Foundation
 
-public struct CustomerModel : Customer {
-    public var firstName: String
-    public var lastName: String
-    public var accounts: [Account]
+struct CustomerModel : Customer {
+    var firstName: String
+    var lastName: String
+    var accounts: [Account]
     
-    public init(firstName: String, lastName: String, accounts: [Account]) {
+    init(firstName: String, lastName: String, accounts: [Account]) {
         self.firstName = firstName
         self.lastName = lastName
         self.accounts = accounts
@@ -14,14 +14,14 @@ public struct CustomerModel : Customer {
     /**
      Get an accout for an account number
      */
-    public func getAccount(_ accountNumber: Int) -> Account? {
+    func getAccount(_ accountNumber: Int) -> Account? {
         return AccountService.shared.accountDict[accountNumber]
     }
     
     /**
      Return an array of string as accout names
      */
-    public func listAllAccounts() -> [String] {
+    func listAllAccounts() -> [String] {
         var retVal = accounts.map { $0.accountType.rawValue }
         
         print("\(firstName) \(lastName)'s Account list (\(retVal.count)):")
@@ -39,7 +39,7 @@ public struct CustomerModel : Customer {
     /**
      Return a string representative of the total ammount.
      */
-    public func getTotalBankBalance() -> String {
+    func getTotalBankBalance() -> String {
         let retVal = accounts.reduce(0) { $0 + $1.balance }
         print("\(firstName) \(lastName)'s total balance: \(retVal.toCurrencyStr())")
         return retVal.toCurrencyStr()
@@ -48,10 +48,14 @@ public struct CustomerModel : Customer {
     /**
      Public function that can be called from Playground or controllers to transfer funds from one to another accounts.
      */
-    public func transferFunds(transferAmount: Double, from accountNumFrom: Int, to accountNumTo: Int) throws {
+    func transferFunds(transferAmount: Double, from accountNumFrom: Int, to accountNumTo: Int) {
         if var fromAccount = AccountService.shared.accountDict[accountNumFrom],
            var toAccount = AccountService.shared.accountDict[accountNumTo] {
-            try performTransferFunds(transferAmount: transferAmount, from: &fromAccount, to: &toAccount)
+            do {
+                try performTransferFunds(transferAmount: transferAmount, from: &fromAccount, to: &toAccount)
+            } catch let error {
+                print(error.localizedDescription)
+            }
         }
     }
     
@@ -72,7 +76,7 @@ public struct CustomerModel : Customer {
     }
     
     // mutating func to add account. mutating keyword is required for struct.
-    public mutating func addAccount(account: Account) -> Bool {
+    mutating func addAccount(account: Account) -> Bool {
         var accountExists = false
         
         self.accounts.forEach { existingAccount in if existingAccount.accountNumber == account.accountNumber { accountExists = true }}
@@ -87,7 +91,7 @@ public struct CustomerModel : Customer {
     }
     
     // add multiple accounts by using Generic.
-    public mutating func addAccounts<T: Account>(accounts: Array<T>) -> Int {
+    mutating func addAccounts<T: Account>(accounts: Array<T>) -> Int {
         var retVal = 0
         
         for account in accounts {

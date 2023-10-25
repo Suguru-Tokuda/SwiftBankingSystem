@@ -1,6 +1,6 @@
 import Foundation
 
-public protocol BankingAccount {
+protocol BankingAccount {
     var accountNumber: Int { get set }
     var balance: Double { get set }
     var accountType: AccountType { get set }

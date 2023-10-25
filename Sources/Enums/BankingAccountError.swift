@@ -1,13 +1,13 @@
 import Foundation
 
-public enum BankingAccountError : Error {
+enum BankingAccountError : Error {
     case insufficientDepositAmountError(amount: Double),
          insufficientBalanceError(balance: Double, amount: Double),
          minimumBalanceError(balance: Double, minimumBalance: Double)
 }
 
 extension BankingAccountError : LocalizedError {
-    public var errorDescription: String? {
+    var errorDescription: String? {
         var retVal: String?
         switch self {
         case .insufficientBalanceError(balance: let balance, amount: let amount):
@@ -26,6 +26,5 @@ extension BankingAccountError : LocalizedError {
         }
         
         return retVal
-
     }
 }
