@@ -14,13 +14,17 @@ let businessAccount = BusinessAccount(accountNumber: 12347, initialBalance: 2000
 
 let checkingAccount2 = CheckingAccount(accountNumber: 22345, initialBalance: 100000000)
 
-// add to
+// add to customer accounts
+var accounts: [Account] = []
+accounts.append(checkingAccount)
 customer1.addAccount(account: checkingAccount)
 // unwrap optional
 if let savingAccount {
-    customer1.addAccount(account: savingAccount)
+    accounts.append(savingAccount)
 }
-customer1.addAccount(account: businessAccount)
+accounts.append(businessAccount)
+
+customer1.addAccounts(accounts: accounts)
 
 customer2.addAccount(account: checkingAccount2)
 

@@ -84,4 +84,15 @@ public struct CustomerModel : Customer {
         
         return !accountExists
     }
+    
+    // add multiple accounts by using Generic.
+    public mutating func addAccounts<T: Account>(accounts: Array<T>) -> Int {
+        var retVal = 0
+        
+        for i in 0..<accounts.count {
+            if addAccount(account: accounts[i]) { retVal += 1 }
+        }
+        
+        return retVal
+    }
 }
