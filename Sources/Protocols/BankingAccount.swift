@@ -15,7 +15,7 @@ public protocol BankingAccount {
     Implements default behaviors of functions.
  */
 extension BankingAccount {
-    mutating func deposit(amount: Double) -> Double  {
+    mutating func deposit(amount: Double) -> Double {
         if amount > 0 {
             balance += amount
         }
@@ -23,7 +23,7 @@ extension BankingAccount {
         return balance
     }
     
-    mutating func withdraw(amount: Double) -> Double  {
+    mutating func withdraw(amount: Double) -> Double {
         if balance >= amount {
             balance -= amount
         }

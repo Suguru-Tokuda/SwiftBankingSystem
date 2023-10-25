@@ -45,7 +45,9 @@ public struct CustomerModel : Customer {
         return retVal.toCurrencyStr()
     }
     
-    
+    /**
+     Public function that can be called from Playground or controllers to transfer funds from one to another accounts.
+     */
     public func transferFunds(transferAmount: Double, from accountNumFrom: Int, to accountNumTo: Int) throws {
         if var fromAccount = AccountService.shared.accountDict[accountNumFrom],
            var toAccount = AccountService.shared.accountDict[accountNumTo] {
